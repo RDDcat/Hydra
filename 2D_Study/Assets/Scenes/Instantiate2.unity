@@ -317,10 +317,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88f1f0910898bc8478ac845db2fe505e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectSpawnCount: 30
   prefabArray:
   - {fileID: 2393172593440496510, guid: 04ee70d6e8b48cf4dbaf6265b3062118, type: 3}
   - {fileID: 1424397529959229000, guid: 8e62482d07dded3458b868231d25e480, type: 3}
   - {fileID: 8755110918341757788, guid: 9c8e813c8886f4c4f99613f5fc065a23, type: 3}
+  spawnPointArray:
+  - {fileID: 196478943}
+  - {fileID: 2068093146}
 --- !u!4 &1902773595
 Transform:
   m_ObjectHideFlags: 0
