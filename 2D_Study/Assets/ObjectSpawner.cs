@@ -8,10 +8,19 @@ public class ObjectSpawner : MonoBehaviour
     private GameObject[] prefabArray;
     [SerializeField]
     private Transform[] spawnPointArray;
+    private int currentObjectCount = 0;
+    private float objectSpawnTime = 0.0f;
 
-    private void Awake()
+    private void Update()
     {
-       for ( int i = 0; i < objectSpawnCount; i++)
+        if (currentObjectCount + 1 > objectSpawnCount)
+        {
+            return;
+        }
+
+        objectSpawnTime += Time.deltaTime;
+
+       if(objectSpawnTime >= 0.5f)
         {
             int prefabIndex = Random.Range(0, prefabArray.Length);
             int spawnIndex = Random.Range(0, spawnPointArray.Length);
@@ -22,6 +31,9 @@ public class ObjectSpawner : MonoBehaviour
 
             Vector3 moveDirection = (spawnIndex == 0 ? Vector3.right : Vector3.left);
             clone.GetComponent<Movement2D>().Setup(moveDirection);
+
+            currentObjectCount++;
+            objectSpawnTime = 0.0f;
         }
     }
 }
