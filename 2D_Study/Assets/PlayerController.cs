@@ -17,9 +17,20 @@ public class PlayerController : MonoBehaviour
         movement2D.Move(x);
 
         //플레이어 점프(스페이스키)
-        if (Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space))
         {
             movement2D.Jump();
+        }
+
+        //if press space player can jump high
+        if(Input.GetKey(KeyCode.Space))
+        {
+            movement2D.isLongJump = true;
+        }
+        //if don't press space player can jump low
+        else if(Input.GetKeyUp(KeyCode.Space))
+        {
+            movement2D.isLongJump = false;
         }
     }
 }
