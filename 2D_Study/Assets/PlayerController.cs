@@ -2,33 +2,24 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
-    private KeyCode keyCodeFire = KeyCode.Space;
-    [SerializeField]
-    private GameObject bulletPrefab;
-    private float moveSpeed = 3.0f;
-    private Vector3 lastMoveDirection = Vector3.right; //처음 Bullet 발사 방향 설정
+    private Movement2D movement2D;
+
+    private void Awake()
+    {
+        movement2D = GetComponent<Movement2D>();
+    }
 
     private void Update()
     {
+        //left or a = -1, right or d = 1
         float x = Input.GetAxisRaw("Horizontal");
-        float y = Input.GetAxisRaw("Vertical");
+        //좌우 이동 방향 제어
+        movement2D.Move(x);
 
-        transform.position += new Vector3(x, y, 0) * moveSpeed * Time.deltaTime;
-
-        if(x != 0 || y != 0)
+        //플레이어 점프(스페이스키)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            lastMoveDirection = new Vector3(x, y, 0);
-        }
-        if (Input.GetKeyDown(keyCodeFire))
-        {
-            GameObject clone = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-
-            clone.name = "Bullet";
-            clone.transform.localScale = Vector3.one * 0.5f;
-            clone.GetComponent<SpriteRenderer>().color = Color.red;
-
-            clone.GetComponent<Movement2D>().Setup(lastMoveDirection);
+            movement2D.Jump();
         }
     }
 }

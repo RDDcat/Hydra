@@ -30,7 +30,7 @@ public class ObjectSpawner : MonoBehaviour
             GameObject clone = Instantiate(prefabArray[prefabIndex], position, Quaternion.identity);
 
             Vector3 moveDirection = (spawnIndex == 0 ? Vector3.right : Vector3.left);
-            clone.GetComponent<Movement2D>().Setup(moveDirection);
+            //clone.GetComponent<Movement2D>().Setup(moveDirection);
 
             currentObjectCount++;
             objectSpawnTime = 0.0f;
