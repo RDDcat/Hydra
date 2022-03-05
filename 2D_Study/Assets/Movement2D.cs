@@ -14,7 +14,11 @@ public class Movement2D : MonoBehaviour
     private LayerMask groundLayer;//바닥 체크를 위한 충돌 레이어
     private CapsuleCollider2D capsuleCollider2D;//오브젝트의 충돌 범위 컴포넌트
     private bool isGrounded;//바닥체크(바닥에 닿아있을 때 true)
-    private Vector2 footPosition;// 발의 위치
+    private Vector3 footPosition;// 발의 위치
+
+    [SerializeField]
+    private int maxJumpCount = 2;
+    private int currentJumpCount = 0;
 
     private void Awake()
     {
@@ -30,6 +34,14 @@ public class Movement2D : MonoBehaviour
         footPosition = new Vector2(bounds.center.x, bounds.min.y);
         //create invisible circle in location of player footposition if circle hit the floor, isGrounded = true
         isGrounded = Physics2D.OverlapCircle(footPosition, 0.1f, groundLayer);
+
+        //if player is on ground And velocity of y is under 0
+        //if don't add 'velocity.y <= 0' condition, can jump three times
+        //if(isGrounded == true)
+        if(isGrounded == true && rigid2D.velocity.y <= 0)
+        {
+            currentJumpCount = maxJumpCount;
+        }
 
         //낮은 점프, 높은 점프 구현을 위한 중력 계수(gravityScale) 조절(Jump Up일 때만 적용)
         //중력 계수가 낮은 if문은 높은 점프가 되고, 중력 계수가 높은 else문은 낮은 점프가 된다
@@ -58,10 +70,13 @@ public class Movement2D : MonoBehaviour
 
     public void Jump()
     {
-        if (isGrounded == true)
+        //if (isGrounded == true)
+        if(currentJumpCount > 0)
         {
             //jumpForce의 크기만큼 윗쪽 방향으로 속력 설정
             rigid2D.velocity = Vector2.up * jumpForce;
+
+            currentJumpCount -= 1;
         }
     }
 }
