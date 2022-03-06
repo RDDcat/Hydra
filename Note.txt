@@ -1,0 +1,18 @@
+Draw Call
+CPU가 GPU에게 어떤 그림을 그려달라고 요청.
+Draw Call 값이 낮을수록 가벼운 게임.
+기기에 따라 특정 개수를 넘기면 프레임 저하 발생.
+모바일의 경우 100을 넘기지 않는 것을 권장.
+
+Batches
+Draw Call을 포함하는 상위 개념.
+Unity5.0부터 Batches를 기준으로 'Stats'에 렌더링 정보 표현.
+Mesh,Material, Shader, Draw Call등의 정보 종합 계산.
+
+Sprite Atlas
+여러 장의 Sprite 이미지를 한 장의 텍스처에 모아두고 사용하는 것.
+Unity에서 Sprite Packer(Legacy), Sprite Atlas 제공
+사용하는 이유 : Batches의 수를 줄이려고
+
+2D Sprite Animation을 위해서는
+Animator Component, Animator Controller Asset, Animation Asset이 필요하다
