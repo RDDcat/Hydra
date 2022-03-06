@@ -1,3 +1,4 @@
+[2DSpriteAnimation]
 Draw Call
 CPU가 GPU에게 어떤 그림을 그려달라고 요청.
 Draw Call 값이 낮을수록 가벼운 게임.
@@ -16,3 +17,27 @@ Unity에서 Sprite Packer(Legacy), Sprite Atlas 제공
 
 2D Sprite Animation을 위해서는
 Animator Component, Animator Controller Asset, Animation Asset이 필요하다
+
+[2DTilemapEditor]
+Tile Plalette
+Tilemap 오브젝트에 배치할 Tile Asset들을 등록해두는 저장소
+팔레트에 있는 Tile Asset을 여러 속성에 따라 배치 또는 삭제 가능
+
+Tile Asset
+맵에 배치할 수 있는 하나의 타일
+
+Grid Object
+자식으로 배치되는 Tilemap Object들을 관리하는 역할
+Cell Layout, Cell Swizzle 정보를 이용해 배치되는 맵의 방식을 Rectangle, Hexagon, Istometric,
+Isometric Z As Y 등으로 설정 가능
+
+Grid Component
+CellSize : each cell size in Grid
+CellGap : each cell gap in Grid
+CellLayout
+CellSwizzle
+if Swizzle is 'xyz' (0,1,1), you change Swizzle 'yxz' (1,0,1)
+
+Tilemap Object
+Tile Asset을 배치하는 공간으로 실제 게임에 보여지는 타일 형태의 게임 월드
+Grid Object의 자식으로 여러 개의 Tilemap 오브젝트 등록 가능 (Layer 구분)
