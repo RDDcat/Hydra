@@ -41,3 +41,11 @@ if Swizzle is 'xyz' (0,1,1), you change Swizzle 'yxz' (1,0,1)
 Tilemap Object
 Tile Asset을 배치하는 공간으로 실제 게임에 보여지는 타일 형태의 게임 월드
 Grid Object의 자식으로 여러 개의 Tilemap 오브젝트 등록 가능 (Layer 구분)
+
+screen space/ world space
+screen space: 게임 뷰 상에서의 좌표. 게임 뷰의 좌측 하단으로 갈수록 0,0에 가까워지고 우측 상단으로 갈수록 설정해놓은 화면 비율의 값과 같아진다.
+두 좌표 사이의 변환이 필요하는 이유: 
+
+마우스 위치 좌표- Input.mousePosition
+
+rect transform
